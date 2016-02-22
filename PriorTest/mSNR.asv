@@ -1,0 +1,6 @@
+function SNR = mSNR(data,length)
+SNR1 = 0;
+SNR2 =0;
+for i = 1:length/2
+end
+    

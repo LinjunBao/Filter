@@ -1,0 +1,103 @@
+Fs= 2000;
+T = 1/Fs;
+[samples,temp]=size(emg);
+N = samples;%length of signals
+%N = 2000;%length of signals
+NFFT = 2^nextpow2(N); % Next power of 2 from length of y
+
+%hold on
+
+%[b,a] = mycomb(70);
+% %EMGfilter = emg(:,1);
+% EMGfilter = filter(b,a,emg(:,1));
+% EMGfft = fft(EMGfilter,NFFT)/N;
+% f= Fs/2*linspace(0,1,NFFT/2+1);
+% % Plot single-sided amplitude spectrum.
+% plot(f,2*abs(EMGfft(1:NFFT/2+1))) 
+% title('COMB Single-Sided Amplitude Spectrum of y(t)')
+% xlabel('Frequency (Hz)')
+% ylabel('|Y(f)|')
+
+%Hd = mycombnotch;
+
+% d = fdesign.comb('notch','L,BW,GBW,Nsh',29,10,-10,4,2030);
+% Hd=design(d);
+% fvtool(Hd);
+
+frequency = 70;
+cut = 5;
+coefficient = 1.2;
+
+
+subplot(2,1,1)
+
+EMGfilter1 =emg(:,1);
+
+
+
+hd = design(fdesign.lowpass('N,F3db',6,400,2000),'butter');
+EMGfilter1 = filter(hd,EMGfilter1);
+
+hd = design(fdesign.bandstop('N,F3dB1,F3dB2',6,frequency-cut,frequency+cut,2000),'butter');
+EMGfilter1 = filter(hd,EMGfilter1);
+
+hd = design(fdesign.bandstop('N,F3dB1,F3dB2',6,frequency*2-cut,frequency*2+cut,2000),'butter');
+EMGfilter1 = filter(hd,EMGfilter1);
+
+hd = design(fdesign.bandstop('N,F3dB1,F3dB2',6,frequency*3-cut,frequency*3+cut,2000),'butter');
+EMGfilter1 = filter(hd,EMGfilter1);
+
+hd = design(fdesign.bandstop('N,F3dB1,F3dB2',6,frequency*4-cut,frequency*4+cut,2000),'butter');
+EMGfilter1 = filter(hd,EMGfilter1);
+
+hd = design(fdesign.bandstop('N,F3dB1,F3dB2',6,frequency*5-cut*coefficient,frequency*5+cut*coefficient,2000),'butter');
+EMGfilter1 = filter(hd,EMGfilter1);
+
+hd = design(fdesign.bandstop('N,F3dB1,F3dB2',6,frequency*6-cut*coefficient,frequency*6+cut*coefficient,2000),'butter');
+EMGfilter1 = filter(hd,EMGfilter1);
+
+
+EMGfilter1 = stageblock(EMGfilter1,3,20,5);
+%EMGfilter1 = filter(Hd,EMGfilter1);
+
+
+% d = fdesign.comb('notch','L,BW,GBW,Nsh',28,10,-10,4,2000);
+% Hd=design(d);
+% EMGfilter1 = filter(Hd,EMGfilter1);
+% 
+% d = fdesign.comb('notch','L,BW,GBW,Nsh',14,10,-10,4,1960);
+% Hd=design(d);
+% EMGfilter1 = filter(Hd,EMGfilter1);
+% 
+% d = fdesign.comb('notch','L,BW,GBW,Nsh',10,20,-10,4,2000);
+% Hd=design(d);
+% EMGfilter1 = filter(Hd,EMGfilter1);
+
+% d = fdesign.comb('notch','L,BW,GBW,Nsh',28,10,-10,4,1960);
+% Hd=design(d);
+% EMGfilter1 = filter(Hd,EMGfilter1);
+
+
+EMGfft1 = fft(EMGfilter1,NFFT)/N;
+f= Fs/2*linspace(0,1,NFFT/2+1);
+% Plot single-sided amplitude spectrum.
+plot(f,2*abs(EMGfft1(1:NFFT/2+1))) 
+title('COMB Single-Sided Amplitude Spectrum of y(t)')
+xlabel('Frequency (Hz)')
+ylabel('|Y(f)|')
+
+
+subplot(2,1,2)
+EMGfilter0 = emg(:,1);
+%EMGfilter = filter(b,a,emg(:,1));
+EMGfft0 = fft(EMGfilter0,NFFT)/N;
+f= Fs/2*linspace(0,1,NFFT/2+1);
+% Plot single-sided amplitude spectrum.
+plot(f,2*abs(EMGfft0(1:NFFT/2+1))) 
+title('Single-Sided Amplitude Spectrum of y(t)')
+xlabel('Frequency (Hz)')
+ylabel('|Y(f)|')
+
+mplot
+
+

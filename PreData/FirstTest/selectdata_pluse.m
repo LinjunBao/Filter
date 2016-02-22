@@ -1,0 +1,21 @@
+str = '3';
+emgorigin = importdata([str,'.mat']);
+emg = emgorigin;
+emg1=[emg(16001:26000,1)];
+
+str = '7';
+emgorigin = importdata([str,'.mat']);
+emg = emgorigin;
+emg2=[emg(16001:26000,1)];
+
+
+str = '8';
+emgorigin = importdata([str,'.mat']);
+emg = emgorigin;
+emg3=[emg(16001:26000,1)];
+
+
+
+
+emg=[emg1;emg2;emg3];
+save(['1_3.mat'],'emg');

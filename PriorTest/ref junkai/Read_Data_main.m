@@ -1,0 +1,1 @@
+clearclcSub1 = Read_Rawdata('Sub1');Sub2 = Read_Rawdata('Sub2');Sub3 = Read_Rawdata('Sub3');Sub4 = Read_Rawdata('Sub4');Sub5 = Read_Rawdata('Sub5');Sub6 = Read_Rawdata('Sub6');Sub7 = Read_Rawdata('Sub7');Sub8 = Read_Rawdata('Sub8');Sub9 = Read_Rawdata('Sub9');Sum = Combine_Data(Sub2,Sub3,Sub5,Sub6,Sub7,Sub9);Plot_Data(Sum,Sub2,Sub3,Sub5,Sub6,Sub7,Sub9);

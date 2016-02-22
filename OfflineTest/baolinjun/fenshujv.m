@@ -1,0 +1,53 @@
+clear all;
+clc;
+tic;
+trialnum = 10;
+pointsum = 4000;
+for i=1:trialnum
+       emg = importdata([num2str(i) '.mat']);
+       [a,channels]=size(emg);
+       A1=emg(501:4500,:);
+       A2=emg(10501:14500,:);
+       A3=emg(20501:24500,:);
+       A4=emg(30501:34500,:);
+       A5=emg(40501:44500,:);
+       A6=emg(50501:54500,:);
+       A7=emg(60501:64500,:);
+       A8=emg(70501:74500,:);
+       A9=emg(80501:84500,:);
+       A10=emg(90501:94500,:);
+
+       save([ num2str(i) '-' num2str(1) '.mat'],'A1');
+       save([ num2str(i) '-' num2str(2) '.mat'],'A2');
+       save([ num2str(i) '-' num2str(3) '.mat'],'A3');
+       save([ num2str(i) '-' num2str(4) '.mat'],'A4');
+       save([ num2str(i) '-' num2str(5) '.mat'],'A5');
+       save([ num2str(i) '-' num2str(6) '.mat'],'A6');
+       save([ num2str(i) '-' num2str(7) '.mat'],'A7');
+       save([ num2str(i) '-' num2str(8) '.mat'],'A8');
+       save([ num2str(i) '-' num2str(9) '.mat'],'A9');
+       save([ num2str(i) '-' num2str(10) '.mat'],'A10');
+
+end
+data=importdata([ '5.mat']);
+B1=data(5501:9500,:);
+B2=data(15501:19500,:);
+B3=data(25501:29500,:);
+B4=data(35501:39500,:);
+B5=data(45501:49500,:);
+B6=data(55501:59500,:);
+B7=data(65501:69500,:);
+B8=data(75501:79500,:);
+B9=data(85501:89500,:);
+B10=data(95501:99500,:);
+save(['1-11.mat'],'B1');
+save([ '2-11.mat'],'B2');
+save(['3-11.mat'],'B3');
+save(['4-11.mat'],'B4');
+save([ '5-11.mat'],'B5');
+save([ '6-11.mat'],'B6');
+save([ '7-11.mat'],'B7');
+save([ '8-11.mat'],'B8');
+save([ '9-11.mat'],'B9');
+save([ '10-11.mat'],'B10');
+toc;
