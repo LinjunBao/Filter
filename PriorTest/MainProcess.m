@@ -3,7 +3,7 @@ clear;
 clc;
 
 %step 1 read raw data
-Sub1 = Read_Rawdata('1_3',70,100,2000,15);
+Sub1 = Read_Rawdata('1_2_nf',70,100,2000,20);
 %Sub2 = Read_Rawdata('9',70,100,2000);
 
 %step 2 deal with data

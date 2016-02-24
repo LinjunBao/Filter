@@ -25,4 +25,4 @@ emg4=[emg(16501:26500,1)];
 % emg3 = mFilterBandPass(emg3,0,SampleFrequency);
 % emg4 = mFilterBandPass(emg4,0,SampleFrequency);
 emg=[emg1;emg2;emg3;emg4];
-save(['1_2_t.mat'],'emg');
+save(['1_2_.mat'],'emg');
